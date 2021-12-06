@@ -16,7 +16,7 @@ class FacePI:
   def setConfig(self):
     config = self.readConfig()
     print("The '[]' after th value is the default value, press ENTER if you don't want to modify it.")
-    api_key = input(f'Please enter the API_KEY[{config["api_key"]}]: ')
+    api_key = input(f'Please enter the API_KEY, current -> [{config["api_key"]}]: ')
     if api_key: config["api_key"] = api_key
     title = input(f'Please enter the TITLE[{config["title"]}]: ')
     if title: config["title"] = title
