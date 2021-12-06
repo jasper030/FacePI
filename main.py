@@ -56,7 +56,7 @@ class FacePI:
       print(data)
       conn.close()
     except Exception as e:
-      print("[Errno {0}] {1}".format(e.errno, e.strerror))
+      print("[Errno {0}] 連線失敗！請檢查網路連線 {1}".format(e.errno, e.strerror))
 
 if __name__ == '__main__':
     fire.Fire(FacePI)
