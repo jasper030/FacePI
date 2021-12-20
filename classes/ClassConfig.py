@@ -24,4 +24,5 @@ class Config:
         self.writeConfig(config)
     
     def showConfig(self):
-        print(self.readConfig())
+        config = self.readConfig()
+        return config
