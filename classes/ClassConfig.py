@@ -1,7 +1,7 @@
 import json, os
 
 class Config:
-    def __init__(self) -> None:
+    def __init__(self):
         basepath = os.path.dirname(os.path.realpath(__file__))
         self.Configpath = os.path.join(basepath, '../Config.json')
 
@@ -25,4 +25,4 @@ class Config:
     
     def showConfig(self):
         config = self.readConfig()
-        return config
+        print(config)

@@ -4,9 +4,9 @@ import json, fire, http.client, urllib.request, urllib.parse, urllib.error, base
 import classes.ClassConfig, classes.ClassFaceAPI, classes.ClassOpenCV
 
 class FacePI:
-  def __init__(self) -> None:
-    self.Config = classes.ClassConfig.Config
-    self.Face = classes.ClassFaceAPI.Face
+  def __init__(self):
+    self.Config = classes.ClassConfig.Config()
+    self.Face = classes.ClassFaceAPI.Face()
 
   def show_opencv(self):
     classes.ClassOpenCV.show_opencv('hint')
@@ -23,6 +23,11 @@ class FacePI:
     '''
     self.Face.detectLocalImage(imagepath)
 
+  def showConfig(self):
+    self.Config.showConfig()
+
+  def detectUrl(self, imageurl):
+    self.Face.detectFaceUrl(imageurl)
 
   
 

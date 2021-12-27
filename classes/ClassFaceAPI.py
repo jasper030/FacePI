@@ -3,7 +3,7 @@ import classes.ClassConfig
 
 class Face:
     def __init__(self) -> None:
-        self.config = classes.ClassConfig.Config().readConfig()
+        self.config = classes.ClassConfig.Config()
 
     
     def detectLocalImage(self, imagepath):
