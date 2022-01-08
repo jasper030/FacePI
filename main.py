@@ -88,7 +88,7 @@ class FacePI:
     imagepath = classes.ClassOpenCV.show_opencv
     self.Identify(imagepath)
 
-  def Train(self, userData = None, personname = None):
+  def Train(self, userData = None, personname = None):  #存檔有問題
     '''用三連拍訓練一個新人'''
     jpgimagepaths = []
     for i in range(3):
