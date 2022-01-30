@@ -21,22 +21,7 @@ class FacePI:
         detectfaces = faceApi.detectURLImages(pictureurl)
       else:
         pictureurl = pictureurl.strip()
-        # statinfo = os.stat(pictureurl)
-        # print("檔案大小：", statinfo.st_size, "Bytes")
-        # if statinfo.st_size < 1024:
-        #     print("圖檔太小 不可小於 1KB")
-        #     sys.exit(1)
-        # elif statinfo.st_size > 4 * 1024 * 1024:
-        #     print("圖檔太大 不可大於 4MB")
-        #     im = Image.open(pictureurl)
-        #     out = im.resize((128, 128))
-        #     im.save(pictureurl, "JPEG")
-        #     print("out=", type(out))
         detectfaces = faceApi.detectLocalImage(pictureurl)
-
-        # if len(detectfaces) == 0:
-        #     print('相片中找不到人！')
-        #     sys.exit(1)
 
       faceids = []
       for detectface in detectfaces:
@@ -45,16 +30,8 @@ class FacePI:
 
       print("Identify.detectfaces=", detectfaces)
 
-      #        try:
       identifiedfaces = faceApi.identify(faceids[:10], config["personGroupId"])
-      # print("在所提供的相片中偵測到 identifyfaces 共 ", len(identifiedfaces), "個")
-      # except MyException.PersonGroupNotTrainedError as e:
-      #     print("接到例外！MyException.PersonGroupNotTrainedError as e")
-      #     print("Identify.detectedFaces=", detectfaces)
-      #     ClassCV.cv_Identifyfaces(detectfaces, pictureurl)
-      #     # ClassTK.tk_UnknownPerson('texttest....', pictureurl, pictureurl)
 
-      #     return
       print("在所提供的相片中偵測到 identifyfaces 共 ", len(identifiedfaces), "個")
 
       # successes = []
@@ -101,17 +78,18 @@ class FacePI:
       personname = input("請輸入你的名字：")
     
     if userData == None:
-      userData = input("請輸入你的說明文字(ex. 高師大附中高三信)")
+      userData = input("請輸入你的說明文字(ex. 高師大附中高三信)：")
     
-    basepath = os.path.dirname(os.path.realpath(__file__))
+    basepath = os.path.dirname(os.path.realpath(__file__)) #C:\Users\崇崇超人\Desktop\FacePI\classes
     jpgtrainpaths = []
     for jpgimagepath in jpgimagepaths:
       filename = os.path.basename(jpgimagepath)
       jpgtrainpath = os.path.join(
         basepath, "traindatas", userData, personname, filename
       )
-      if not os.path.exists(os.path.dirname(jpgimagepath)):
+      if not os.path.exists(os.path.dirname(jpgtrainpath)):
         os.makedirs(os.path.dirname(jpgtrainpath))
+        print("not exist check")
       os.rename(jpgimagepath, jpgtrainpath)
       jpgtrainpaths.append(jpgtrainpath)
 
@@ -124,8 +102,14 @@ class FacePI:
     personGroupapi = classes.ClassPersonGroup.PersonGroup()
     personGroupapi.train_personGroup()
 
-  def showConfig(self):
-    classes.ClassConfig.Config().showConfig()
+  def showConfig(self, item_name):
+    '''please enter the item you want to check. (ex. python main.py showConfig api_key)
+       If you want to check all items, please type '0' '''
+    config = classes.ClassConfig.Config().readConfig()
+    if item_name == 0:
+      print(config)
+    else:
+      print(config[item_name])
 
   def detectUrl(self, imageurl):
     classes.ClassFaceAPI.Face().detectImageUrl(imageurl)

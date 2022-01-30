@@ -23,6 +23,10 @@ class Config:
         if title: config["title"] = title
         self.writeConfig(config)
     
+    '''
+    (已使用readConfig取代)
+    
     def showConfig(self):
         config = self.readConfig()
-        print(config)
+        return config
+    '''
