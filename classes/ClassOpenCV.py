@@ -72,7 +72,8 @@ def show_opencv(hint='', mirror=True):
             picturepath = getTakePicturePath(
                 config['personGroupId'])
             ret_val, img = cam.read()
-            cv2.imwrite(picturepath, img)
+            cv2.imencode('.jpg', img)[1].tofile(picturepath)
+            #cv2.imwrite(picturepath, img) //路徑包含中文會報錯
             print(picturepath + ' saved')
             cv2.destroyAllWindows()
             cv2.VideoCapture(0).release()
