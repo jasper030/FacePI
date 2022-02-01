@@ -107,7 +107,8 @@ class FacePI:
        If you want to check all items, please type '0' '''
     config = classes.ClassConfig.Config().readConfig()
     if item_name == 0:
-      print(config)
+      for i in config:
+        print(i + ': ' , config[i])
     else:
       print(config[item_name])
 
